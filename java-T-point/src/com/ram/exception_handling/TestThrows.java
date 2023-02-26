@@ -2,7 +2,7 @@ package com.ram.exception_handling;
 
 import java.io.IOException;
 
-class M {
+class MethodEx {
     void method() throws IOException {
         throw new IOException("device error");
     }
@@ -11,7 +11,7 @@ class M {
 public class TestThrows {
     public static void main(String args[]) {
         try {
-            M m = new M();
+            MethodEx m = new MethodEx();
             m.method();
         } catch (Exception e) {
             System.out.println("exception handled");
