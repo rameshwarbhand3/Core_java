@@ -14,7 +14,7 @@ class Item {
         this.price = price;
     }
 }
-public class Lambda_Expressions{
+public class LambdaExpressions {
     public static void main(String[] args) {
         List<Item> list=new ArrayList<Item>();
         list.add(new Item(1,"Samsung A5",17000f));

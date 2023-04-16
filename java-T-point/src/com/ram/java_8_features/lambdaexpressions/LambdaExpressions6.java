@@ -17,7 +17,7 @@ class Product {
     }
 }
 
-public class Lambda_Expressions6 {
+public class LambdaExpressions6 {
     public static void main(String args[]) {
         List<Item> al = new ArrayList<Item>();
         al.add(new Item(101, "Mobile", 10000f));

@@ -1,10 +1,10 @@
 package com.ram.java_8_features.lambdaexpressions;
-
+@FunctionalInterface
 interface Drawable{
     public void draw();
 }
 //without lambda expressions.
-public class Lambda_ExpressionsDemo {
+public class LambdaExpressionsDemo {
     public static void main(String args[]){
         int width = 10;
 //        Drawable d = new Drawable() {

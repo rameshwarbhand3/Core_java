@@ -2,7 +2,7 @@ package com.ram.java_8_features.lambdaexpressions;
 interface Sayable{
     public String say(String name);
 }
-public class Lambda_ExpressionsDemo3 {
+public class LambdaExpressionsDemo3 {
     public static void main(String args[]){
         Sayable s1 = (name)->{
             return "Hello "+name;

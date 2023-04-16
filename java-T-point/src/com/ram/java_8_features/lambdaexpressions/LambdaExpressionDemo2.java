@@ -2,7 +2,7 @@ package com.ram.java_8_features.lambdaexpressions;
 interface Sayabale{
     public String say();
 }
-public class Lambda_ExpressionDemo2 {
+public class LambdaExpressionDemo2 {
     public static void main(String args[]){
         Sayabale s = ()->{
             return "I have to say something";
