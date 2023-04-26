@@ -18,10 +18,10 @@ public class Client {
         DataManager dm = new DataManagerImpl();
         List<Question> questions = dm.populateData();
 //
-//        for(Question q:questions){
-//            System.out.println(q);
 //        }
 //		for(Question q1 : questions){
+//        for(Question q:questions){
+//            System.out.println(q);
 //			System.out.println(q1.getSrno());
 //		}
 //        List<Integer> srNumbers = questions.stream()
@@ -42,6 +42,22 @@ public class Client {
 //                System.out.println(q2.getSrno()+ " "+ q2.getQuestion());
 //            }
 //        System.out.println("-------------------------------------------------------------");
+        List<Criteria>template = new ArrayList<>();
+        template.add(new Criteria(Category.GK,Complexity.Simple,2));
+        template.add(new Criteria(Category.GK,Complexity.Medium,1));
+        template.add(new Criteria(Category.GK,Complexity.Complex,1));
+
+        template.add(new Criteria(Category.Science,Complexity.Complex,1));
+        template.add(new Criteria(Category.History,Complexity.Simple,2));
+        template.add(new Criteria(Category.History,Complexity.Medium,2));
+
+        template.add(new Criteria(Category.Geography,Complexity.Medium,1));
+        System.out.println("Question by template :");
+        Set<Question>templateQuestion = dm.generateQuestionPaper(questions,template);
+        for(Question q : templateQuestion){
+            System.out.println(q);
+        }
+
 
 
 //        System.out.println(("Sort by Category : "));
@@ -50,11 +66,11 @@ public class Client {
 //            System.out.println("Category : " + q3.getCategory() + " " + "Question : " + q3.getQuestion());
 //        }
 //        System.out.println("-------------------------------------------------------------");
-//
-        System.out.println(("Sort by Complexity : "));
-        dm.sortByComplexity(questions);
-        for (Question q4 : questions) {
-            System.out.println("Complexity : " + q4.getComplexity() + " " + "Question : " + q4.getQuestion());
-        }
+////
+//        System.out.println(("Sort by Complexity : "));
+//        dm.sortByComplexity(questions);
+//        for (Question q4 : questions) {
+//            System.out.println("Complexity : " + q4.getComplexity() + " " + "Question : " + q4.getQuestion());
+//        }
     }
 }

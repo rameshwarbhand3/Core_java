@@ -31,7 +31,7 @@ public class DataManagerImpl implements DataManager {
             q.setOption3(rs.getString(5));
             q.setOption4(rs.getString(6));
             q.setCorrectAns(rs.getString(7));
-            q.setType(Category.valueOf(rs.getString("Category")));
+            q.setType(Category.valueOf(rs.getString(8)));
 //            System.out.println(Category.valueOf(rs.getString("Category")));
 
             q.setComplexity(Complexity.valueOf(rs.getString(9)));
@@ -71,8 +71,21 @@ public class DataManagerImpl implements DataManager {
 
     @Override
     public Set<Question> generateQuestionPaper(List<Question> list, List<Criteria> template) {
-        return null;
-    }
+        Set<Question> finalQuestionList=new HashSet<Question>();
+        for(Criteria criteria:template){
+            List<Question> tempList=getQuestionByComplexity(criteria.getComplexity(), getQuestionByCategory(criteria.getCategory(), list));
+            for (int i = 0; i < criteria.getNoOfQuestion(); i++) {
+                int index=(int) ((Math.random())*tempList.size());
+
+                finalQuestionList.add(tempList.get(index));
+
+                //removing duplicates
+                if(i==tempList.size())
+                    i--;
+            }
+        }
+        return finalQuestionList;
+        }
 
     @Override
     public void sortByCategory(List<Question> questionList) {
