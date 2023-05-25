@@ -1,0 +1,7 @@
+DELIMITER &&
+CREATE PROCEDURE addon (IN var1 INT,IN var2 INT,OUT var3 INT)
+BEGIN
+var3 :=var1+var2;
+
+END &&
+DELIMITER ;
