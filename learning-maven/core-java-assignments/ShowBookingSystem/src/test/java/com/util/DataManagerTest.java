@@ -68,13 +68,13 @@ public class DataManagerTest {
         fail("check valid seat number should fail");
 
     }
+
     @Test(expected = SeatsNotAvailableException.class)
-    public  void checkSeatAvailable() throws SeatsNotAvailableException, UnknownShowException, InvalidSeatNumberException {
+    public void checkSeatAvailable() throws SeatsNotAvailableException, UnknownShowException, InvalidSeatNumberException {
         //Given
-        List<Show>shows = getDummyShowList();
+        List<Show> shows = getDummyShowList();
         //when
-        dm.bookShow(shows,"All The Best","6:30 PM",20);
-        assertEquals(20,shows.get(0).getSeatsAvailable());
+        dm.bookShow(shows, "All The Best", "6:30 PM", 50);
 
     }
 
