@@ -7,7 +7,7 @@ public class ThrowDemo {
         st.studentDetails();
         Student st1 = new Student("121","sham",-55);
         st1.studentDetails();
-        //throw new RuntimeException();
+//        throw new RuntimeException();
         //Statement after exception shows unreachable statement.
         System.out.println("After exception");
     }
