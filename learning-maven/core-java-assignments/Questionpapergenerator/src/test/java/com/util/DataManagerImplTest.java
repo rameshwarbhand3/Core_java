@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DataManagerImplTest {
     private DataManager dm;
+
     @BeforeEach
     public void SetUp() {
         //TODO: run questiondb.sql file on h2 db first
@@ -22,8 +23,9 @@ class DataManagerImplTest {
 //        File file = new File(this.getClass().getResource("/QuestionBankDb.sql").toURI());
 //        FileReader fileReader = new FileReader(file);
 //        RunScript.execute(conn, fileReader);
-        dm  = new DataManagerImpl();
+        dm = new DataManagerImpl();
     }
+
     @Test
     public void testPopulateData() throws SQLException, ClassNotFoundException {
         // when or act
@@ -32,29 +34,40 @@ class DataManagerImplTest {
         //Then or assert
         assertEquals(27, actualQuestions.size());
     }
+
     @Test
-    public void checkgetQuestionByCategory() throws SQLException, ClassNotFoundException {
-        List<Question>questionList = getDummyShowList();
+    public void checkGetQuestionByCategory() throws SQLException, ClassNotFoundException {
+        List<Question> questionList = getDummyShowList();
         //when
         List<Question> actual = dm.getQuestionByCategory(Category.Science, questionList);
         System.out.println(actual);
         //then
-        assertEquals(5,actual.size());
-
-    }
-    @Test
-    void checkQuestionByComplexity() throws SQLException, ClassNotFoundException {
-        List<Question>questionList = getDummyShowList();
-        List<Question>actual = dm.getQuestionByComplexity(Complexity.Complex,questionList);
-        System.out.println(actual);
-        assertEquals(6,actual.size());
-    }
-    @Test
-    void checkQuestionSortByComplexity() throws SQLException, ClassNotFoundException {
-        List<Question>questionList = getDummyShowList();
+        assertEquals(5, actual.size());
     }
 
-    private List<Question> getDummyShowList() throws SQLException, ClassNotFoundException {
+    @Test
+    void checkQuestionByComplexity() {
+        // given
+        List<Question> questionList = getDummyShowList();
+
+        // when
+        List<Question> actual = dm.getQuestionByComplexity(Complexity.Complex, questionList);
+
+        // then
+        assertEquals(6, actual.size());
+    }
+
+    @Test
+    void checkQuestionSortByComplexity() {
+        // given
+        List<Question> questionList = getDummyShowList();
+
+        // when
+
+        // then
+    }
+
+    private List<Question> getDummyShowList() {
         List<Question> questionList = new ArrayList<>();
 
 
