@@ -44,7 +44,7 @@ public class DataManagerImpl implements DataManager {
     public List<Question> getQuestionByCategory(Category category, List<Question> questionsList) {
         List<Question> lCategory = new ArrayList<>();
         for (Question q1 : questionsList) {
-            System.out.println(q1.getSrno() + "="+q1.getCategory());
+//            System.out.println(q1.getSrno() + "="+q1.getCategory());
             if (q1.getCategory() == category) {
                 lCategory.add(q1);
             }
