@@ -150,15 +150,13 @@ class DataManagerImplTest {
         assertEquals(3, questionSet.size());
     }
 
-
-    //FIXME
     @Test
-    public void testGenerateQuestionPaperWhenPartialCriteriaMatch() {
+    public void testGenerateQuestionPaperWhenNoOfQuestionsAreNotSufficientInTheOriginalQuestionSet() {
         //given
         List<Question> questionList = getDummyShowList();
         List<Criteria> templateList = new ArrayList<>();
         templateList.add(new Criteria(Category.Geography, Complexity.Simple, 2));
-        templateList.add(new Criteria(Category.GK, Complexity.Medium, 2));
+        templateList.add(new Criteria(Category.GK, Complexity.Medium, 6));
         templateList.add(new Criteria(Category.History, Complexity.Complex, 1));
 
         //when
