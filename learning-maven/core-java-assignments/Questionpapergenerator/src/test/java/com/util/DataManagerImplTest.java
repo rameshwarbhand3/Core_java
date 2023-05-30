@@ -36,17 +36,19 @@ class DataManagerImplTest {
     }
 
     @Test
-    public void checkGetQuestionByCategory() throws SQLException, ClassNotFoundException {
+    public void checkGetQuestionByCategory() {
+        //given
         List<Question> questionList = getDummyShowList();
+
         //when
         List<Question> actual = dm.getQuestionByCategory(Category.Science, questionList);
-        System.out.println(actual);
-        //then
-        assertEquals(5, actual.size());
+
+       //then
+        assertEquals(1, actual.size());
     }
 
     @Test
-    void checkQuestionByComplexity() {
+    void checkGetQuestionByComplexity() {
         // given
         List<Question> questionList = getDummyShowList();
 
@@ -54,21 +56,83 @@ class DataManagerImplTest {
         List<Question> actual = dm.getQuestionByComplexity(Complexity.Complex, questionList);
 
         // then
-        assertEquals(6, actual.size());
+        assertEquals(1, actual.size());
     }
 
     @Test
-    void checkQuestionSortByComplexity() {
+    void testQuestionsSortByComplexity() {
         // given
         List<Question> questionList = getDummyShowList();
+        //Before Sorting order
+//        assertEquals(1, questionList.get(0).getSrno());
+//        assertEquals(2, questionList.get(1).getSrno());
+//        assertEquals(3, questionList.get(2).getSrno());
+//        assertEquals(4, questionList.get(3).getSrno());
 
         // when
+        dm.sortByComplexity(questionList);
 
         // then
+        //After sorting order
+        assertEquals(4, questionList.get(0).getSrno());
+        assertEquals(3, questionList.get(1).getSrno());
+        assertEquals(1, questionList.get(2).getSrno());
+        assertEquals(2, questionList.get(3).getSrno());
+    }
+
+    @Test
+    public void testQuestionsSortByCategory(){
+        //given
+        List<Question>questionList = getDummyShowList();
+
+        //Before Sorting order
+//        assertEquals(1, questionList.get(0).getSrno());
+//        assertEquals(2, questionList.get(1).getSrno());
+//        assertEquals(3, questionList.get(2).getSrno());
+//        assertEquals(4, questionList.get(3).getSrno());
+
+
+        //when
+        dm.sortByCategory(questionList);
+
+        //then
+        //After Sorting order
+        assertEquals(1,questionList.get(0).getSrno());
+        assertEquals(4,questionList.get(1).getSrno());
+        assertEquals(3,questionList.get(2).getSrno());
+        assertEquals(2,questionList.get(3).getSrno());
     }
 
     private List<Question> getDummyShowList() {
         List<Question> questionList = new ArrayList<>();
+
+        Question q1 = new Question();
+        q1.setSrno(1);
+        q1.setQuestion("What is the satellite of the earth called?");
+        q1.setComplexity(Complexity.Simple);
+        q1.setType(Category.Geography);
+        questionList.add(q1);
+
+        Question q2 = new Question();
+        q2.setSrno(2);
+        q2.setQuestion("Which city is the capital of Maharashtra?");
+        q2.setComplexity(Complexity.Simple);
+        q2.setType(Category.Science);
+        questionList.add(q2);
+
+        Question q3 = new Question();
+        q3.setSrno(3);
+        q3.setQuestion("Who wrote Dasbodh?");
+        q3.setComplexity(Complexity.Medium);
+        q3.setType(Category.GK);
+        questionList.add(q3);
+
+        Question q4 = new Question();
+        q4.setSrno(4);
+        q4.setQuestion("How many sence organs do we have?");
+        q4.setComplexity(Complexity.Complex);
+        q4.setType(Category.History);
+        questionList.add(q4);
 
 
         return questionList;
