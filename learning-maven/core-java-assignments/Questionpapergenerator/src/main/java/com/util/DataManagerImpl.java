@@ -1,13 +1,16 @@
 package com.util;
 
-import java.sql.*;
-import java.util.*;
-import java.util.stream.Collectors;
-
 import com.bean.Category;
 import com.bean.Complexity;
 import com.bean.Criteria;
 import com.bean.Question;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.*;
+import java.util.stream.Collectors;
 
 // Override and implement all the methods of DataManager Interface here
 public class DataManagerImpl implements DataManager {
@@ -62,29 +65,30 @@ public class DataManagerImpl implements DataManager {
 //            }
 //        }
 //        return lComplexity;
-       return   questionsList.stream()
-                .filter((Question q)->q.getComplexity()==complexity)
+        return questionsList.stream()
+                .filter((Question q) -> q.getComplexity() == complexity)
                 .collect(Collectors.toList());
 
     }
 
     @Override
     public Set<Question> generateQuestionPaper(List<Question> list, List<Criteria> template) {
-        Set<Question> finalQuestionList=new HashSet<Question>();
-        for(Criteria criteria:template){
-            List<Question> tempList=getQuestionByComplexity(criteria.getComplexity(), getQuestionByCategory(criteria.getCategory(), list));
-            for (int i = 0; i < criteria.getNoOfQuestion(); i++) {
-                int index=(int) ((Math.random())*tempList.size());
-
-                finalQuestionList.add(tempList.get(index));
-
-                //removing duplicates
-                if(i==tempList.size())
+        Set<Question> finalQuestionPaperSet = new HashSet<>();
+        for (Criteria criteria : template) {
+            final List<Question> questionsByCategory = getQuestionByCategory(criteria.getCategory(), list);
+            List<Question> questionsByCategoryAndComplexity = getQuestionByComplexity(criteria.getComplexity(), questionsByCategory);
+            for (int i = 0; i < criteria.getNoOfQuestion() && !questionsByCategoryAndComplexity.isEmpty(); i++) {
+                int index = (int) ((Math.random()) * questionsByCategoryAndComplexity.size());
+                final Question question = questionsByCategoryAndComplexity.remove(index);
+                final boolean isAdded = finalQuestionPaperSet.add(question);
+                //Duplicate check might require in case someone sends the duplicate Criteria with different noOfQuestions.
+                if (!isAdded) {
                     i--;
+                }
             }
         }
-        return finalQuestionList;
-        }
+        return finalQuestionPaperSet;
+    }
 
     @Override
     public void sortByCategory(List<Question> questionList) {

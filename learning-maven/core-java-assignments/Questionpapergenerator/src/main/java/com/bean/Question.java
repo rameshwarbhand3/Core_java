@@ -1,5 +1,7 @@
 package com.bean;
 
+import java.util.Objects;
+
 public class Question  {
 	private int srno;
 	private String question;
@@ -95,5 +97,25 @@ public class Question  {
 				+ ", option3=" + option3 + ", option4=" + option4
 				+ ", correctAns=" + correctAns + ", Category=" + Category
 				+ ", complexity=" + complexity + "]";
+	}
+
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Question)) return false;
+
+		Question question1 = (Question) o;
+
+		if (srno != question1.srno) return false;
+		return question1.getQuestion().equals(question);
+		//return Objects.equals(question, question1.question);
+	}
+
+	@Override
+	public int hashCode() {
+		int result = srno;
+		result = 31 * result + (question != null ? question.hashCode() : 0);
+		return result;
 	}
 }
