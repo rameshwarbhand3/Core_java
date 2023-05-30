@@ -22,11 +22,11 @@ public class Account {
         this.accHolderName = accHolderName;
     }
 
-    public String getAccType(String accType) {
+    public String getAccType() {
         return accType;
     }
 
-    public void setAccType() {
+    public void setAccType(String accType) {
         this.accType = accType;
     }
 
