@@ -8,9 +8,11 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DataManagerImplTest {
     private DataManager dm;
@@ -36,7 +38,7 @@ class DataManagerImplTest {
     }
 
     @Test
-    public void checkGetQuestionByCategory() {
+    public void testGetQuestionByCategory() {
         //given
         List<Question> questionList = getDummyShowList();
 
@@ -48,7 +50,22 @@ class DataManagerImplTest {
     }
 
     @Test
-    void checkGetQuestionByComplexity() {
+    public void testGetQuestionByCategoryWhenNoMatch() {
+        //given
+        Question q1  = buildQuestion(1,"what is your name?",Complexity.Simple,Category.GK);
+        Question q2  = buildQuestion(2,"who are you?",Complexity.Medium,Category.History);
+        Question q3  = buildQuestion(2,"what are you doing?",Complexity.Medium,Category.Geography);
+        final List<Question> questions = Arrays.asList(q1, q2,q3);
+
+        //when
+        final List<Question> actualQuestionsByCategory = dm.getQuestionByCategory(Category.Science, questions);
+
+        //then
+        assertTrue(actualQuestionsByCategory.isEmpty());
+    }
+
+    @Test
+    void testGetQuestionByComplexity() {
         // given
         List<Question> questionList = getDummyShowList();
 
@@ -57,6 +74,20 @@ class DataManagerImplTest {
 
         // then
         assertEquals(1, actual.size());
+    }
+    @Test
+    public void testGetQuestionByComplexityWhenNoMatch() {
+        //given
+        Question q1  = buildQuestion(1,"what is your name?",Complexity.Simple,Category.GK);
+        Question q2  = buildQuestion(2,"who are you?",Complexity.Medium,Category.History);
+        Question q3  = buildQuestion(2,"what are you doing?",Complexity.Medium,Category.Geography);
+        final List<Question> questions = Arrays.asList(q1, q2,q3);
+
+        //when
+        final List<Question> actualQuestionByComplexity = dm.getQuestionByComplexity(Complexity.Complex, questions);
+
+        //then
+        assertTrue(actualQuestionByComplexity.isEmpty());
     }
 
     @Test
@@ -106,35 +137,27 @@ class DataManagerImplTest {
     private List<Question> getDummyShowList() {
         List<Question> questionList = new ArrayList<>();
 
-        Question q1 = new Question();
-        q1.setSrno(1);
-        q1.setQuestion("What is the satellite of the earth called?");
-        q1.setComplexity(Complexity.Simple);
-        q1.setType(Category.Geography);
+        Question q1 = buildQuestion(1, "What is the satellite of the earth called?", Complexity.Simple, Category.Geography);
         questionList.add(q1);
 
-        Question q2 = new Question();
-        q2.setSrno(2);
-        q2.setQuestion("Which city is the capital of Maharashtra?");
-        q2.setComplexity(Complexity.Simple);
-        q2.setType(Category.Science);
+        Question q2 = buildQuestion(2,"Which city is the capital of Maharashtra?",Complexity.Simple,Category.Science);
         questionList.add(q2);
 
-        Question q3 = new Question();
-        q3.setSrno(3);
-        q3.setQuestion("Who wrote Dasbodh?");
-        q3.setComplexity(Complexity.Medium);
-        q3.setType(Category.GK);
+        Question q3 = buildQuestion(3,"Who wrote Dasbodh?",Complexity.Medium,Category.GK);
         questionList.add(q3);
 
-        Question q4 = new Question();
-        q4.setSrno(4);
-        q4.setQuestion("How many sence organs do we have?");
-        q4.setComplexity(Complexity.Complex);
-        q4.setType(Category.History);
+        Question q4 = buildQuestion(4,"How many sence organs do we have?",Complexity.Complex,Category.History);
         questionList.add(q4);
 
-
         return questionList;
+    }
+
+    private Question buildQuestion(int srNo, String qName, Complexity complexity, Category category) {
+        Question question = new Question();
+        question.setSrno(srNo);
+        question.setQuestion(qName);
+        question.setComplexity(complexity);
+        question.setType(category);
+        return question;
     }
 }
