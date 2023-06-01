@@ -1,14 +1,10 @@
 package com.psl;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
-import com.psl.beans.Student;
-import com.psl.exceptions.InsufficientDataException;
-import com.psl.util.DataManager;
-import com.psl.util.StudentDataManager;
+import com.beans.Student;
+import com.exceptions.InsufficientDataException;
+import com.util.StudentDataManager;
 
 public class Client {
 

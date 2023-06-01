@@ -1,19 +1,15 @@
-package com.psl.util;
+package com.util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
-import com.psl.beans.Address;
-import com.psl.beans.Student;
-import com.psl.exceptions.InsufficientDataException;
+import com.beans.Address;
+import com.beans.Student;
+import com.exceptions.InsufficientDataException;
 
 //Override all the methods of the DataManager Interface
 public class StudentDataManager implements DataManager {

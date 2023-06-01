@@ -1,9 +1,9 @@
-package com.psl.util;
+package com.util;
 
 import java.util.List;
 
-import com.psl.beans.Student;
-import com.psl.exceptions.InsufficientDataException;
+import com.beans.Student;
+import com.exceptions.InsufficientDataException;
 
 public interface DataManager {
   

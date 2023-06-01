@@ -1,6 +1,4 @@
-package com.psl.beans;
-
-import java.util.Comparator;
+package com.beans;
 
 public class Student implements Comparable<Student>{
 	private int rollno;

@@ -1,4 +1,4 @@
-package com.psl.exceptions;
+package com.exceptions;
 
 public class InsufficientDataException extends Exception {
 	

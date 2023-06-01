@@ -1,4 +1,4 @@
-package com.psl.beans;
+package com.beans;
 
 public class Address{
 	private String streetName;
