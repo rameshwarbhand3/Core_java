@@ -11,12 +11,12 @@ import com.util.DataManagerImpl;
 
 public class Client {
 
-	public static void main(String[] args) throws InvalidStateException {
+	public static void main(String[] args)  {
 		//Call your methods from here  to test the code implemented
 		DataManager dm = new DataManagerImpl();
 		Map<String, List<String>> map = new HashMap<>();
 		try {
-			map = dm.populateCityDataMap("/home/pranjal/Desktop/workspace/core-java/learning-maven/core-java-assignments/CityStateLocator/src/main/resources/StateCityDetails.txt");
+			map = dm.populateCityDataMap("/StateCityDetails.txt");
 			for (Map.Entry<String, List<String>> entry : map.entrySet()) {
 				System.out.println(entry.getKey() + entry.getValue());
 			}
@@ -24,7 +24,8 @@ public class Client {
 			e.printStackTrace();
 		}
 		try{
-			 dm.getCities(map, "Goa");
+			final List<String> cities = dm.getCities(map, "Goa");
+			System.out.println("Cities in the Goa "+ cities);
 		}catch (Exception e){
 
 			e.printStackTrace();
