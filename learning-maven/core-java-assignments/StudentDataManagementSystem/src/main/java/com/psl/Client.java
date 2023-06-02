@@ -10,11 +10,11 @@ public class Client {
 
     public static void main(String[] args) {
         StudentDataManager st = new StudentDataManager();
-        List<Student> studentList = st.populateData("/home/pranjal/Desktop/workspace/core-java/assignments/StudentDataManagementSystem/StudentDetails.txt");
-        for (Student student : studentList) {
-            System.out.println(student);
-        }
-
+        List<Student> studentList = st.populateData("/StudentDetails.txt");
+//        for (Student student : studentList) {
+//            System.out.println(student);
+//        }
+        System.out.println("---------------------------------");
         try {
             st.validateData(studentList);
         } catch (InsufficientDataException e) {
@@ -22,7 +22,7 @@ public class Client {
         }
 
         st.sortData(studentList);
-        System.out.println("studentlist after sorting ");
+        System.out.println("student after sorting ");
         for(Student s : studentList){
             System.out.println(s);
         }

@@ -6,6 +6,7 @@ import com.exceptions.InsufficientDataException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,7 +18,7 @@ public class StudentDataManager implements DataManager {
     public List<Student> populateData(String fileName) {
         List<Student> studentList = new ArrayList<>();
         try {
-            File file = new File(fileName);
+            File file = getFile(fileName);
             Scanner sc = new Scanner(file);
             while (sc.hasNext()) {
                 String records = sc.nextLine();
@@ -68,12 +69,21 @@ public class StudentDataManager implements DataManager {
         return studentList;
     }
 
-
+    private File getFile(String fileName) {
+        File file;
+        try {
+            file = new File(this.getClass().getResource(fileName).toURI());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        return file;
+    }
     @Override
     public void validateData(List<Student> studentList) throws InsufficientDataException {
         for (Student s : studentList) {
             if (s.getStudentName() == null) {
                 studentList.remove(s);
+                System.out.println("Insufficient data exception");
                 throw new InsufficientDataException();
             }
         }

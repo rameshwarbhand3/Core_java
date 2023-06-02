@@ -5,7 +5,7 @@ public class InsufficientDataException extends Exception {
 	private static final long serialVersionUID = 1L;
 
 	public InsufficientDataException() {
-		super(" Insuffiecient Data Exception ");
+		super(" Insufficient Data Exception ");
 	}
 
 	public InsufficientDataException(String string) {
