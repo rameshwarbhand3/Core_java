@@ -1,4 +1,4 @@
-
+package com.ram.multithreading;
 class A{
     public void m1(){
         for(int i = 0; i < 10; i++) {
@@ -36,7 +36,7 @@ class MyThread3 extends Thread{
         a.m1();
     }
 }
-public class Main {
+ public class Main {
     public static void main(String[] args) {
         A a = new A();
         MyThread1 mt1 = new MyThread1(a);
@@ -54,3 +54,4 @@ public class Main {
         mt3.start();
     }
 }
+
