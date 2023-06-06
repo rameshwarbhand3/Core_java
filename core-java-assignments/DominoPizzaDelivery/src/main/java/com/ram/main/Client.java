@@ -1,12 +1,12 @@
-package com.psl.main;
+package com.ram.main;
+
+import com.ram.bean.Dish;
+import com.ram.bean.Location;
+import com.ram.bean.Order;
+import com.ram.util.DominozPizzaDeliveryImpl;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.psl.bean.Dish;
-import com.psl.bean.Location;
-import com.psl.bean.Order;
-import com.psl.util.DominozPizzaDeliveryImpl;
 
 /*
  * @Author: Gandhali Inamdar
@@ -20,7 +20,7 @@ public class Client {
 		List<Location>location = new ArrayList<>();
 		List<Order>order = new ArrayList<>();
 		try {
-			dpli.populateData("dish.txt", "location.txt", dish, location);
+			dpli.populateData("/dish.txt", "/location.txt", dish, location);
 		}catch (Exception e){
 			e.printStackTrace();
 		}
@@ -32,7 +32,7 @@ public class Client {
 		System.out.println("\n"+dish.toString());
 
 		System.out.println("------------------------------------------------");
-		order = dpli.calculateOrder("order.txt",dish,location);
+		order = dpli.calculateOrder("/order.txt",dish,location);
 		System.out.println("\nOrders----\n");
 		System.out.println(order);
 
