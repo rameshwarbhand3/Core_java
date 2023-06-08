@@ -74,7 +74,9 @@ public class DominozPizzaDeliveryImpl implements DominozPizzaDelivery {
                     loc.add(l);
                     d.setList(loc);
                 }
+
             }
+
         }
     }
 
@@ -113,6 +115,7 @@ public class DominozPizzaDeliveryImpl implements DominozPizzaDelivery {
                     }
                 }
             }
+//            System.out.println(orderFinal.size());
         } catch (Exception e) {
             e.printStackTrace();
         }

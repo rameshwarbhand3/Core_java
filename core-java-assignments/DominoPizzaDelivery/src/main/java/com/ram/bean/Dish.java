@@ -16,7 +16,7 @@ public class Dish {
 	public void setDishId(int dishId) {
 		this.dishId = dishId;
 	}
-	public String getDishName() {
+	public  String getDishName() {
 		return dishName;
 	}
 	public void setDishName(String dishName) {

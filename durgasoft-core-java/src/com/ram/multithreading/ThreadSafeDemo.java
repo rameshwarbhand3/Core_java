@@ -36,7 +36,7 @@ class Thread6 extends Thread{
         System.out.println(str);
     }
 }
-public class ThreadnotSafeDemo {
+public class ThreadSafeDemo {
     public static void main(String[] args) {
         String str = new String("Durga ");
         Thread4 thread4 = new Thread4(str);
