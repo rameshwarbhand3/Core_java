@@ -1,4 +1,4 @@
-package com.ram;
+package com.ram.basicJdbc;
 
 import java.sql.*;
 
